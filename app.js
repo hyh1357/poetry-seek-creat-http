@@ -68,68 +68,9 @@ function checkSitePassword() {
     }
     
     return new Promise((resolve) => {
-        if (!overlay) { resolve(true); return; }
-        
-        // 先查一下服务器是否需要密码
-        fetch('/api/status')
-            .then(r => r.json())
-            .then(data => {
-                if (!data.site_password_set) {
-                    // 服务器没设密码，直接通过
-                    overlay.style.display = 'none';
-                    resolve(true);
-                    return;
-                }
-                
-                // 需要密码，显示遮罩
-                overlay.classList.add('active');
-                overlay.classList.remove('hidden');
-                if (input) input.focus();
-                
-                const doVerify = () => {
-                    const pwd = input ? input.value.trim() : '';
-                    if (!pwd) {
-                        if (errorEl) errorEl.textContent = '请输入密码';
-                        return;
-                    }
-                    
-                    fetch('/api/verify-site-password', {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({password: pwd})
-                    })
-                    .then(r => r.json())
-                    .then(result => {
-                        if (result.verified) {
-                            sessionStorage.setItem('site_verified', 'true');
-                            overlay.classList.add('hidden');
-                            overlay.classList.remove('active');
-                            setTimeout(() => {
-                                overlay.style.display = 'none';
-                                resolve(true);
-                            }, 400);
-                        } else {
-                            if (errorEl) errorEl.textContent = '密码错误，请重试';
-                            if (input) { input.value = ''; input.focus(); }
-                        }
-                    })
-                    .catch(() => {
-                        if (errorEl) errorEl.textContent = '验证失败，请稍后重试';
-                    });
-                };
-                
-                if (btn) btn.addEventListener('click', doVerify);
-                if (input) {
-                    input.addEventListener('keydown', (e) => {
-                        if (e.key === 'Enter') doVerify();
-                    });
-                }
-            })
-            .catch(() => {
-                // 服务器不可达，直接通过
-                overlay.style.display = 'none';
-                resolve(true);
-            });
+        // 静态托管（GitHub Pages）下无后端 API，直接通过
+        if (overlay) overlay.style.display = 'none';
+        resolve(true);
     });
 }
 
