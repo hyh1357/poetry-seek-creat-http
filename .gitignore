@@ -1,0 +1,73 @@
+# 大数据目录（不提交）
+chinese-poetry-library/
+poetry-collection/
+poems-db/
+chinese-poetry/
+merged_output/
+nohup.out
+
+# web-app 中排除爬虫/构建/临时脚本
+web-app/crawl_*.py
+web-app/*.sh
+web-app/fetch_*.py
+web-app/fetch_*.json
+web-app/parse_*.py
+web-app/parse-*.js
+web-app/merge_*.py
+web-app/integrate_*.py
+web-app/final_fix.py
+web-app/simplify_all.py
+web-app/verify_simp.py
+web-app/server.py
+web-app/check_*.py
+web-app/test_*.py
+web-app/run_*.sh
+web-app/do_git.py
+web-app/init_git.py
+web-app/build_v2.py
+web-app/calibrate.py
+web-app/clean_*.py
+web-app/fix_*.py
+web-app/ranking_authors.py
+web-app/extract_*.py
+web-app/deploy.sh
+web-app/DEPLOY.md
+
+# 临时数据文件
+web-app/poems*.json
+web-app/example-*.json
+web-app/example-*.txt
+web-app/guji_*.json
+web-app/scrape_*.txt
+web-app/result.log
+web-app/poem-analysis-data.js.bak
+web-app/*_bak*.json
+web-app/*_backup*
+
+# 应用数据（已内嵌在 data.js 中，无需重复提交爬取结果）
+web-app/mingju_data.js
+web-app/guji_data.js
+
+# 原始大文件（已拆分为 data_part*.js）
+web-app/data.js
+
+# Taro 小程序
+src/
+config/
+package.json
+project.config.json
+preview.html
+tsconfig.json
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 环境配置
+.env
+config.json

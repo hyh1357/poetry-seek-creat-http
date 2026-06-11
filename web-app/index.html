@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>诗词 - 古文岛风格</title>
+    <link rel="stylesheet" href="styles.css?v=4">
+</head>
+<body>
+    <!-- ===================== 页面访问密码 ===================== -->
+    <div id="site-password-overlay" class="site-password-overlay">
+        <div class="site-password-modal">
+            <div class="site-password-icon"></div>
+            <h2>请输入访问密码</h2>
+            <p class="site-password-desc">此页面已设置访问密码</p>
+            <input type="password" id="site-password-input" placeholder="输入密码" autocomplete="off">
+            <div id="site-password-error" class="site-password-error"></div>
+            <button id="site-password-btn" class="site-password-btn">进入</button>
+        </div>
+    </div>
+
+    <div class="app">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">诗词</h1>
+                <div class="global-search-box">
+                    <input type="text" id="global-search" placeholder="搜索诗词、古籍全文、名句、作者..." autocomplete="off">
+                    <button id="global-search-btn" class="global-search-btn"></button>
+                    <div id="global-search-results" class="global-search-results"></div>
+                </div>
+                <nav class="nav">
+                    <button class="nav-btn active" data-page="mingju">名句</button>
+                    <button class="nav-btn" data-page="shiwen">诗文</button>
+                    <button class="nav-btn" data-page="guji">古籍</button>
+                    <button class="nav-btn" data-page="authors">作者</button>
+                    <button class="nav-btn" data-page="my-poems">我的</button>
+                    <button class="nav-btn" data-page="create">创作</button>
+                    <button class="nav-btn" data-page="ai-agent">AI 助手</button>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main">
+            <!-- ===================== 名句页 ===================== -->
+            <div id="mingju" class="page active">
+                <!-- 每日佳句 -->
+                <div class="daily-quote-section" id="daily-quote-section">
+                    <div class="daily-quote-header">
+                        <span class="daily-quote-icon"></span>
+                        <span class="daily-quote-title">每日佳句</span>
+                        <span class="daily-quote-date" id="daily-quote-date"></span>
+                    </div>
+                    <div class="daily-quote-list" id="daily-quote-list"></div>
+                </div>
+
+                <div class="page-header">
+                    <h2>名句</h2>
+                </div>
+
+                <div class="filter-panel">
+                    <div class="filter-group">
+                        <div class="filter-header">
+                            <span class="filter-title">类型</span>
+                            <button class="filter-toggle" data-filter="mingju-type">展开</button>
+                        </div>
+                        <div class="filter-options" id="mingju-type-filters"></div>
+                    </div>
+                    <div class="filter-group">
+                        <div class="filter-header">
+                            <span class="filter-title">作者</span>
+                            <button class="filter-toggle" data-filter="mingju-author">展开</button>
+                        </div>
+                        <div class="filter-options" id="mingju-author-filters"></div>
+                    </div>
+                    <div class="filter-group">
+                        <div class="filter-header">
+                            <span class="filter-title">朝代</span>
+                            <button class="filter-toggle" data-filter="mingju-dynasty">展开</button>
+                        </div>
+                        <div class="filter-options" id="mingju-dynasty-filters"></div>
+                    </div>
+                    <div class="filter-group">
+                        <div class="filter-header">
+                            <span class="filter-title">主题</span>
+                            <button class="filter-toggle" data-filter="mingju-theme">展开</button>
+                        </div>
+                        <div class="filter-options" id="mingju-theme-filters"></div>
+                    </div>
+                    <div class="filter-actions">
+                        <button class="btn-secondary" id="mingju-reset">重置筛选</button>
+                    </div>
+                </div>
+
+                <div class="stats-bar">
+                    <span id="mingju-count">共 0 条</span>
+                </div>
+
+                <div id="mingju-list" class="mingju-grid"></div>
+            </div>
+
+            <!-- ===================== 诗文页 ===================== -->
+            <div id="shiwen" class="page">
+                <div class="page-header">
+                    <h2>诗文</h2>
+                </div>
+
+                <div class="filter-panel">
+                    <div class="filter-group">
+                        <div class="filter-header">
+                            <span class="filter-title">类型</span>
+                            <button class="filter-toggle" data-filter="shiwen-type">展开</button>
+                        </div>
+                        <div class="filter-options" id="shiwen-type-filters"></div>
+                    </div>
+                    <div class="filter-group">
+                        <div class="filter-header">
+                            <span class="filter-title">作者</span>
+                            <button class="filter-toggle" data-filter="shiwen-author">展开</button>
+                        </div>
+                        <div class="filter-options" id="shiwen-author-filters"></div>
+                    </div>
+                    <div class="filter-group">
+                        <div class="filter-header">
+                            <span class="filter-title">朝代</span>
+                            <button class="filter-toggle" data-filter="shiwen-dynasty">展开</button>
+                        </div>
+                        <div class="filter-options" id="shiwen-dynasty-filters"></div>
+                    </div>
+                    <div class="filter-group">
+                        <div class="filter-header">
+                            <span class="filter-title">主题</span>
+                            <button class="filter-toggle" data-filter="shiwen-theme">展开</button>
+                        </div>
+                        <div class="filter-options" id="shiwen-theme-filters"></div>
+                    </div>
+                    <div class="filter-actions">
+                        <button class="btn-secondary" id="shiwen-reset">重置筛选</button>
+                    </div>
+                </div>
+
+                <div class="stats-bar">
+                    <span id="shiwen-count">共 0 首</span>
+                </div>
+
+                <div id="shiwen-list" class="poems-grid"></div>
+            </div>
+
+            <!-- ===================== 古籍页 ===================== -->
+            <div id="guji" class="page">
+                <div class="page-header">
+                    <h2>古籍</h2>
+                </div>
+
+                <div class="guji-nav">
+                    <button class="guji-nav-btn active" data-guji-cat="经部">经部</button>
+                    <button class="guji-nav-btn" data-guji-cat="史部">史部</button>
+                    <button class="guji-nav-btn" data-guji-cat="子部">子部</button>
+                    <button class="guji-nav-btn" data-guji-cat="集部">集部</button>
+                </div>
+
+                <div id="guji-content" class="guji-content"></div>
+                <div id="guji-count" class="guji-page-count"></div>
+            </div>
+
+            <!-- ===================== 作者页 ===================== -->
+            <div id="authors" class="page">
+                <div class="page-header">
+                    <h2>作者</h2>
+                </div>
+
+                <div id="authors-list" class="authors-list"></div>
+            </div>
+
+            <!-- ===================== 我的诗集 ===================== -->
+            <div id="my-poems" class="page">
+                <div class="page-header">
+                    <h2>我的作品</h2>
+                    <button class="btn-primary" id="add-btn">创作新诗</button>
+                </div>
+                <div id="poems-list" class="poems-grid"></div>
+                <div id="empty-state" class="empty-state" style="display: none;">
+                    <p>还没有作品，开始您的诗意人生吧！</p>
+                </div>
+            </div>
+
+            <!-- ===================== 创作 ===================== -->
+            <div id="create" class="page">
+                <div class="page-header">
+                    <h2 id="create-title">创作</h2>
+                </div>
+                <div class="create-single-layout">
+                    <form id="poem-form" class="poem-form">
+                        <input type="hidden" id="poem-id">
+                        <div class="form-group">
+                            <label>标题</label>
+                            <input type="text" id="poem-title" placeholder="请输入诗词标题" required>
+                        </div>
+                        <div class="form-group">
+                            <label>作者</label>
+                            <input type="text" id="poem-author" placeholder="请输入作者">
+                        </div>
+                        <div class="form-group">
+                            <label>分类</label>
+                            <select id="poem-category">
+                                <option value="personal">个人原创</option>
+                                <option value="landscape">山水田园</option>
+                                <option value="farewell">送别赠友</option>
+                                <option value="love">爱情相思</option>
+                                <option value="philosophy">哲理人生</option>
+                                <option value="other">其他</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>内容</label>
+                            <textarea id="poem-content" placeholder="请输入诗词内容..." rows="12" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>配图（可选）</label>
+                            <input type="url" id="poem-image" placeholder="请输入图片链接">
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" id="cancel-btn">取消</button>
+                            <button type="submit" class="btn-primary">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- ===================== AI 助手（独立页面） ===================== -->
+            <div id="ai-agent" class="page">
+                <div class="page-header">
+                    <h2> AI 助手</h2>
+                </div>
+                <div class="agent-page-layout">
+                    <div id="agent-panel" class="agent-panel agent-page-panel">
+                        <div class="agent-header">
+                            <h3>诗词创作助手</h3>
+                            <div class="agent-header-right">
+                                <label class="agent-ai-toggle" title="切换 AI / 本地模式">
+                                    <span class="agent-ai-toggle-label">AI</span>
+                                    <input type="checkbox" id="agent-ai-switch" checked>
+                                    <span class="agent-ai-toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="agent-chat" id="agent-chat">
+                            <div class="agent-msg agent-welcome">
+                                <div class="agent-msg-bubble">
+                                    <strong>你好！我是诗词创作助手</strong>
+                                    <p>我可以帮你：</p>
+                                    <ul>
+                                        <li>根据主题生成灵感</li>
+                                        <li>续写诗句</li>
+                                        <li>润色修改</li>
+                                        <li>引用经典名句</li>
+                                    </ul>
+                                    <p>试试点击下面的快捷指令，或者直接输入你的需求～</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="agent-presets" id="agent-presets">
+                            <button class="agent-preset-btn" data-prompt="帮我写一首春天的诗">春</button>
+                            <button class="agent-preset-btn" data-prompt="帮我写一首秋天的诗">秋</button>
+                            <button class="agent-preset-btn" data-prompt="帮我写一首关于爱情的诗">爱情</button>
+                            <button class="agent-preset-btn" data-prompt="帮我写一首送别的诗">送别</button>
+                            <button class="agent-preset-btn" data-prompt="帮我写一首思乡的诗">思乡</button>
+                            <button class="agent-preset-btn" data-prompt="帮我润色这首诗">润色</button>
+                        </div>
+                        <div class="agent-input-area">
+                            <input type="text" id="agent-input" placeholder="输入你的需求..." autocomplete="off">
+                            <button id="agent-send-btn" class="agent-send-btn">发送</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- ===================== 弹窗 ===================== -->
+        <div id="poem-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-title"></h3>
+                    <button class="close-btn" id="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <img id="modal-image" class="modal-image" style="display: none;">
+                    <div class="modal-meta">
+                        <span id="modal-author" class="modal-author"></span>
+                        <span id="modal-dynasty" class="modal-tag"></span>
+                        <span id="modal-type" class="modal-tag"></span>
+                        <span id="modal-theme" class="modal-tag"></span>
+                        <span id="modal-book" class="modal-tag"></span>
+                    </div>
+                    <div id="modal-content" class="modal-content-text"></div>
+                    <div class="modal-analysis">
+                        <div class="analysis-tabs">
+                            <button class="analysis-tab active" data-tab="translate">全文翻译</button>
+                            <button class="analysis-tab" data-tab="appreciate">诗词鉴赏</button>
+                            <button class="analysis-tab" data-tab="background">创作背景</button>
+                        </div>
+                        <div class="analysis-content" id="analysis-translate">
+                            <div class="analysis-placeholder">点击「全文翻译」加载...</div>
+                        </div>
+                        <div class="analysis-content" id="analysis-appreciate" style="display:none;">
+                            <div class="analysis-placeholder">点击「诗词鉴赏」加载...</div>
+                        </div>
+                        <div class="analysis-content" id="analysis-background" style="display:none;">
+                            <div class="analysis-placeholder">点击「创作背景」加载...</div>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button class="btn-secondary" id="copy-btn">复制</button>
+                        <button class="btn-primary" id="edit-btn" style="display: none;">编辑</button>
+                        <button class="btn-danger" id="delete-btn" style="display: none;">删除</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 古籍详情弹窗 -->
+        <div id="guji-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="guji-modal-title"></h3>
+                    <button class="close-btn" id="close-guji-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="guji-modal-meta" class="guji-modal-meta"></div>
+                    <div id="guji-modal-cont" class="guji-modal-cont"></div>
+                    <div id="guji-modal-views" class="guji-modal-views"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 作者详情弹窗 -->
+        <div id="author-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="author-modal-title"></h3>
+                    <button class="close-btn" id="close-author-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="author-modal-bio" class="author-modal-bio"></div>
+                    <div id="author-modal-divider" class="author-modal-divider" style="display:none;">
+                        <span>代表作品</span>
+                    </div>
+                    <div id="author-modal-works" class="author-poems-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="data_part1.js?v=1"></script>
+    <script src="data_part2.js?v=1"></script>
+    <script src="data_part3.js?v=1"></script>
+    <script src="author-detail-data.js?v=4"></script>
+    <script src="poem-analysis-data.js?v=3"></script>
+    <script src="app.js?v=13"></script>
+</body>
+</html>
