@@ -49,7 +49,7 @@ web-app/mingju_data.js
 web-app/guji_data.js
 
 # 原始大文件（已拆分为 data_part*.js）
-web-app/data.js
+data.js
 
 # Taro 小程序
 src/
